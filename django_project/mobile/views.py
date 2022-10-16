@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 # Register your models here.
-
+from .models import Mobile
 
 mobile_details=[{
     'brand': 'Apple',
@@ -47,7 +47,7 @@ mobile_details=[{
 
 def home(request):
     context={
-        'mobile_details':mobile_details
+        'mobile_details':Mobile.objects.all()                        # 'mobile_details':mobile_details
     }
     return render(request,'mobile/home.html',context)
     # return HttpResponse('<h1>Mobile Home</h1>')
@@ -55,5 +55,5 @@ def home(request):
 
 
 def about(request):
-    return render(request,'mobile/about.html')
+    return render(request,'mobile/about.html',{'title':'About'})
     # return HttpResponse('<h1>Mobile About</h1>')

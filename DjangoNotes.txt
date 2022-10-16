@@ -1,0 +1,77 @@
+django-admin 
+dhango-admin startproject mysite
+wsgi = webserver gateway interface
+to run server : python3 manage.py runserver
+to get into env : python3 -m venv djangocourse    source djangocourse/bin/activate
+
+
+2nd video
+
+A single project can contain multiple apps
+to create a new app : python3 manage.py startapp blog
+
+
+
+3rd video
+here we are adding html to our previous server
+DOnt forget to add our apps config from our app folder to  setting.py(installed apps)
+adding html about and home
+for common part in both html we will add base.html  ---------tempelate inheritance
+
+
+4th video
+python3 manage.py makemigrations
+python3 manage.py migrate
+python3 manage.py createsuperuser
+akshay test@123
+sridevi test@123
+
+
+
+
+
+5th video
+->Django has its own builtin orm
+->sqlite for dev and postgres for production
+->in models.py we will save items that we need to save in db
+->models.DateTimeDiled(auto_now=True)  //this for storing last modified time 
+->models.DateTimeDiled(auto_now_add=True)  //for storing creation time and cant be modified (4:30)
+->After creating modek we need to do makemigrations ie python3 manage.py makemigrations
+    After this a new file will be created in migrations folder
+
+-> If we need to see the extacxt sql code (python3 manage.py sqlmigrate mobile 0001)
+    Output= 
+    BEGIN;
+--
+-- Create model Mobile
+--
+CREATE TABLE "mobile_mobile" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "brand" varchar(100) NOT NULL, "base_color" text NOT NULL, "model" text NOT NULL, "battery_capacity" integer NOT NULL, "author_id" integer NOT NULL REFERENCES "auth_user" ("id") DEFERRABLE INITIALLY DEFERRED);
+CREATE INDEX "mobile_mobile_author_id_b1b87afe" ON "mobile_mobile" ("author_id");
+COMMIT;
+
+
+->now we need to migrate this all thing to DB. so (python3 manage.py migrate)
+
+-> To open shell : python3 manage.py shell  
+    from mobile.models import Mobile
+    from django.contrib.auth.models import User
+    to view all users : User.objects.all()
+    to view first user : User.objects.first()
+    to filter :  User.objects.filter(username='akshay')
+    to store in var:   user=User.objects.filter(username='akshay').first()
+    to see attributes of user : user.id, user.pk
+    to get user:  user=User.objects.get(id=1)
+    to view all mobiles :  Mobile.objects.all()
+    to store one mobile detail:   mobile_1=Mobile(brand='Apple',base_color='iPhone SE',model='Black',battery_capacity='1800',author=user)
+    after running the above code table is still empty(because we just created object, we need to add to Db)
+    to add to DB : mobile_1.save()
+    now check using Mobile.objects.all()
+    define __ in add in model.py to pritn brand
+    now add another mobile mobile_1=Mobile(brand='Apple',base_color='Red',model='iPhone 12 Mini',battery_capacity='2815',author=user)
+    post=obile.objects.all().first()
+    we can print detalils like post.brand
+    user.mobile_set ==> this to see all mobile uploaded by that user
+    user.mobile_set.all()
+    user.mobile_set.create(brand='Poco',base_color='Black',model='C3',battery_capacity='5000',author=user)==
+
+-> if you want to see mobile details in /admin make a change in admins.py. we can update or do whatver wwe want to 
