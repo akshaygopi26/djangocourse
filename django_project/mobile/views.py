@@ -2,6 +2,11 @@ from django.shortcuts import render
 from django.http import HttpResponse
 # Register your models here.
 from .models import Mobile
+from django.views.generic import (
+    ListView,
+    DetailView,
+    CreateView
+)
 
 mobile_details=[{
     'brand': 'Apple',
@@ -53,6 +58,24 @@ def home(request):
     # return HttpResponse('<h1>Mobile Home</h1>')
 
 
+
+class MobileListView(ListView):
+    model=Mobile
+    template_name='mobile/home.html'            #<app>/<model>_<viewtype>.html
+    context_object_name='mobile_details'
+    ordering=['units_sold']                     #with - in front it can be desc
+
+
+
+class MobileDetailView(DetailView):
+    model=Mobile
+
+
+class MobileCreateView(CreateView):
+    model=Mobile
+    fields=['brand','model']
+    
+    
 
 def about(request):
     return render(request,'mobile/about.html',{'title':'About'})

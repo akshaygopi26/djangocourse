@@ -1,0 +1,16 @@
+{% extends "mobile/base.html" %}
+{% block content %}
+<h1>
+    Mobiile Home!!!
+</h1>
+<article class="media content-section">
+    <div class="media-body">
+        <div class="article-metadata">
+            <a class="mr-2" href="#">{{ object.brand }}</a>
+            <small class="text-muted">{{ object.base_color }}</small>
+        </div>
+        <h2><a class="article-title" href="#">{{ object.model}}</a></h2>
+        <p class="article-content">Battery :{{ object.battery_capacity }}</p>
+    </div>
+</article> 
+{% endblock content %}

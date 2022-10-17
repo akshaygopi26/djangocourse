@@ -100,16 +100,23 @@ the above code will add data to sqlitedb
 
 now we need to paginate the data 
 so open shell
-
-from django.core.paginator import Paginator
-mobile=['1','2','3','4','5','6','7','8']
-p=Paginator(mobile,2)
-p.num_pages     //to see number of pages
-for page in p.page_range:   //to lopop
-    print(page)   // this will print 1 2 3 4
-p1=p.page(1)
-p1.object_list   //to see items of page p1
-p1.has_previous()  //method to check if there is previous page
-p1.has_next()   //to check nect page  it will return T or F
-p1.next_page_number()
+IN shell
+    from django.core.paginator import Paginator
+    mobile=['1','2','3','4','5','6','7','8']
+    p=Paginator(mobile,2)
+    p.num_pages     //to see number of pages
+    for page in p.page_range:   //to lopop
+        print(page)   // this will print 1 2 3 4
+    p1=p.page(1)
+    p1.object_list   //to see items of page p1
+    p1.has_previous()  //method to check if there is previous page
+    p1.has_next()   //to check nect page  it will return T or F
+    p1.next_page_number()
  
+
+
+
+
+
+VIDEO10
+mobile detail view 
