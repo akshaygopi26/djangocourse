@@ -75,3 +75,41 @@ COMMIT;
     user.mobile_set.create(brand='Poco',base_color='Black',model='C3',battery_capacity='5000',author=user)==
 
 -> if you want to see mobile details in /admin make a change in admins.py. we can update or do whatver wwe want to 
+
+
+to reset tables : https://stackoverflow.com/questions/2286276/how-do-i-drop-a-table-from-sqlite3-in-django
+
+
+
+
+
+
+
+
+Video 11
+we are going to add data in sqlite
+
+with open('dataset.json) as f:
+    mobile_json=json.load(f)
+
+for mobile in mobile_json:
+    mobile=Mobile(Sno=mobile['Sno'],brand=mobile['brand'],model=mobile['model'],base_color=mobile['base_color'],processor=mobile['processor'],screen_size=mobile['screen_size'],ROM=mobile['ROM'],RAM=mobile['RAM'],display_size=mobile['display_size'],num_rear_camera=mobile['num_rear_camera'],num_front_camera=mobile['num_front_camera'],battery_capacity=mobile['battery_capacity'],ratings=mobile['ratings'],num_of_ratings=mobile['num_of_ratings'],sales_price=mobile['sales_price'],discount_percent=mobile['discount_percent'],sales=mobile['sales'],units_sold=mobile['units_sold'])
+    mobile.save()
+
+the above code will add data to sqlitedb
+
+now we need to paginate the data 
+so open shell
+
+from django.core.paginator import Paginator
+mobile=['1','2','3','4','5','6','7','8']
+p=Paginator(mobile,2)
+p.num_pages     //to see number of pages
+for page in p.page_range:   //to lopop
+    print(page)   // this will print 1 2 3 4
+p1=p.page(1)
+p1.object_list   //to see items of page p1
+p1.has_previous()  //method to check if there is previous page
+p1.has_next()   //to check nect page  it will return T or F
+p1.next_page_number()
+ 
