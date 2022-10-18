@@ -1,14 +1,14 @@
 {% extends "mobile/base.html" %}
 {% block content %}
-<h1>
-    Mobiile Home!!!
+<h1 class="mb-3">
+    
 </h1>
 {% for item in mobile_details %}
 
 <article class="media content-section">
     <div class="media-body">
         <div class="article-metadata">
-            <a class="mr-2" href="{% url 'mobile-brand' item.brand %}">{{ item.brand }}</a>
+            <a class="mr-2" href="{% url 'mobile-brand' item.brand%}">{{ item.brand }}</a>
             <small class="text-muted">{{ item.base_color }}</small>
         </div>
         <h2><a class="article-title" href="{% url 'mobile-detail' item.id%}">{{ item.model}}</a></h2>

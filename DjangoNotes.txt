@@ -120,3 +120,9 @@ IN shell
 
 VIDEO10
 mobile detail view 
+
+
+
+VIDEO11 continuation
+to the postlistview we created in last video we will add pagination
+<!-- Mobile by {{%view.kwargs.brand%}} ({{ page_obj.paginator.count}}) -->

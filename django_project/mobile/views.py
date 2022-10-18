@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 from django.http import HttpResponse
 # Register your models here.
 from .models import Mobile
@@ -64,6 +64,24 @@ class MobileListView(ListView):
     template_name='mobile/home.html'            #<app>/<model>_<viewtype>.html
     context_object_name='mobile_details'
     ordering=['units_sold']                     #with - in front it can be desc
+    paginate_by=20
+
+
+
+class BrandMobileListView(ListView):
+    model=Mobile
+    template_name='mobile/mobile_brand.html'            #<app>/<model>_<viewtype>.html
+    context_object_name='mobile_details'
+    # ordering=['units_sold']                     #with - in front it can be desc
+    paginate_by=15
+    def get_queryset(self):
+        print("---------------------------------------------")
+        print(self.kwargs.get('brand'))
+        # brand = get_object_or_404(Mobile, brand=self.kwargs.get('brand'))
+        # print(brand)
+        temp=self.kwargs.get('brand')
+        return Mobile.objects.filter(brand=temp).order_by('units_sold')
+        # return HttpResponse('<h1>Mobile Brand</h1>')
 
 
 
@@ -74,7 +92,7 @@ class MobileDetailView(DetailView):
 class MobileCreateView(CreateView):
     model=Mobile
     fields=['brand','model']
-    
+
     
 
 def about(request):

@@ -3,12 +3,14 @@ from . import views
 from  .views import (
     MobileListView,
     MobileDetailView,
-    MobileCreateView
+    MobileCreateView,
+    BrandMobileListView
 )
 
 
 urlpatterns = [
     path('',MobileListView.as_view(),name='mobile-home'),
+    path('brand/<str:brand>',BrandMobileListView.as_view(),name='mobile-brand'),
     path('mobile/<int:pk>',MobileDetailView.as_view(),name='mobile-detail'),                      # path('', views.home,name='mobile-home'),  MobileListView.as_view()
     path('mobile/new/',MobileCreateView.as_view(),name='mobile-create'),
     path('about/', views.about,name='mobile-about')
