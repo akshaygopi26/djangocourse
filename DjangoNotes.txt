@@ -34,8 +34,8 @@ sridevi test@123
 ->Django has its own builtin orm
 ->sqlite for dev and postgres for production
 ->in models.py we will save items that we need to save in db
-->models.DateTimeDiled(auto_now=True)  //this for storing last modified time 
-->models.DateTimeDiled(auto_now_add=True)  //for storing creation time and cant be modified (4:30)
+->models.DateTimefIELDled(auto_now=True)  //this for storing last modified time 
+->models.DateTimefIELDed(auto_now_add=True)  //for storing creation time and cant be modified (4:30)
 ->After creating modek we need to do makemigrations ie python3 manage.py makemigrations
     After this a new file will be created in migrations folder
 
